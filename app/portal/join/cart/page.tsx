@@ -16,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2 } from 'lucide-react';
+import { Loader2, MapPin } from 'lucide-react';
 
 const cartSchema = z.object({
   licensePlate: z.string()
@@ -41,6 +41,7 @@ function CartPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const planId = searchParams.get('planId');
+  const siteCodeFromUrl = searchParams.get('siteCode');
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,7 +57,7 @@ function CartPageContent() {
   } = useForm<CartFormData>({
     resolver: zodResolver(cartSchema),
     defaultValues: {
-      siteCode: process.env.NEXT_PUBLIC_DEFAULT_SITE_CODE || 'MAIN',
+      siteCode: siteCodeFromUrl || 'DEF', // Default to Top Edge Car Wash
     },
   });
 
@@ -73,8 +74,10 @@ function CartPageContent() {
     try {
       const response = await fetch('/api/backoffice/site/list');
       const result = await response.json();
-      if (result.ok) {
-        setSites(result.data || []);
+      // Extract sites from nested structure: result.data.data.sites
+      const sitesData = result.ok && result.data?.data?.sites;
+      if (sitesData && Array.isArray(sitesData)) {
+        setSites(sitesData);
       }
     } catch (err) {
       console.error('Failed to fetch sites:', err);
@@ -172,8 +175,8 @@ function CartPageContent() {
 
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {/* Site Selection */}
-            {sites.length > 1 && (
+            {/* Site Selection - Only show if not pre-selected or if multiple sites */}
+            {sites.length > 1 && !siteCodeFromUrl && (
               <div className="space-y-2">
                 <Label htmlFor="siteCode">Car Wash Location</Label>
                 <select
@@ -191,6 +194,21 @@ function CartPageContent() {
                 {errors.siteCode && (
                   <p className="text-sm text-red-600">{errors.siteCode.message}</p>
                 )}
+              </div>
+            )}
+
+            {/* Show selected location if pre-selected */}
+            {siteCodeFromUrl && sites.length > 0 && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="flex items-start gap-2">
+                  <MapPin className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-blue-900">Selected Location</p>
+                    <p className="text-blue-700">
+                      {sites.find(s => s.code === siteCodeFromUrl)?.name || siteCodeFromUrl}
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
 
