@@ -4,21 +4,38 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateProductSchema } from "@/lib/seo/schemas";
 
 const Pricing = () => {
-  return (
-    <section id="pricing" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Simple Pricing, <span className="text-gradient">No Hidden Fees</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that's right for you
-          </p>
-        </div>
+  const unlimitedSchema = generateProductSchema(
+    "Unlimited Club",
+    25,
+    [
+      "Unlimited daily washes",
+      "License Plate Recognition",
+      "Members-Only express lane",
+      "No long-term contract",
+      "Valid at all 3 Tampa Bay locations",
+      "Free vacuums and air included"
+    ]
+  );
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+  return (
+    <>
+      <StructuredData data={unlimitedSchema} />
+      <section id="pricing" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Simple Pricing, <span className="text-gradient">No Hidden Fees</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Choose the plan that's right for you
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Unlimited Club - Highlighted */}
           <Card className="border-2 border-primary shadow-glow relative">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
@@ -116,9 +133,10 @@ const Pricing = () => {
               </Button>
             </CardContent>
           </Card>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

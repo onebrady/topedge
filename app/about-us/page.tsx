@@ -9,6 +9,21 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About Us - Top Edge Car Wash | Family-Owned Tampa Bay Car Wash",
   description: "Learn about Top Edge Car Wash, a locally owned, family-operated business serving Tampa Bay with state-of-the-art technology, eco-friendly practices, and exceptional customer service.",
+  alternates: {
+    canonical: "https://topedgecarwashes.com/about-us",
+  },
+  openGraph: {
+    title: "About Us - Top Edge Car Wash | Family-Owned Tampa Bay Car Wash",
+    description: "Learn about Top Edge Car Wash, a locally owned, family-operated business serving Tampa Bay with state-of-the-art technology, eco-friendly practices, and exceptional customer service.",
+    url: "https://topedgecarwashes.com/about-us",
+    type: "website",
+    images: [
+      {
+        url: "https://topedgecarwashes.com/og-image.jpg",
+        alt: "About Top Edge Car Wash",
+      },
+    ],
+  },
 };
 
 export default function AboutUs() {

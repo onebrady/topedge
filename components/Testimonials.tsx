@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateReviewSchema } from "@/lib/seo/schemas";
 
 const reviews = [
   {
@@ -23,44 +25,57 @@ const reviews = [
 ];
 
 const Testimonials = () => {
+  const reviewSchemas = generateReviewSchema(
+    reviews.map((review) => ({
+      author: review.name,
+      rating: review.rating,
+      text: review.text,
+    }))
+  );
+
   return (
-    <section className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            What <span className="text-gradient">Tampa Bay Drivers</span> Are Saying
-          </h2>
-          <div className="flex items-center justify-center gap-2 text-xl">
-            <Star className="h-6 w-6 fill-primary text-primary" />
-            <span className="font-bold">4.8</span>
-            <span className="text-muted-foreground">Average Rating Across All Locations</span>
+    <>
+      {reviewSchemas.map((schema, index) => (
+        <StructuredData key={index} data={schema} />
+      ))}
+      <section className="py-20 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              What <span className="text-gradient">Tampa Bay Drivers</span> Are Saying
+            </h2>
+            <div className="flex items-center justify-center gap-2 text-xl">
+              <Star className="h-6 w-6 fill-primary text-primary" />
+              <span className="font-bold">4.8</span>
+              <span className="text-muted-foreground">Average Rating Across All Locations</span>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {reviews.map((review, index) => (
+              <Card key={index} className="hover:shadow-elegant transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">"{review.text}"</p>
+                  <div>
+                    <p className="font-bold">{review.name}</p>
+                    <p className="text-sm text-muted-foreground">{review.location}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <p className="text-muted-foreground mb-4">500+ Five-Star Reviews</p>
           </div>
         </div>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {reviews.map((review, index) => (
-            <Card key={index} className="hover:shadow-elegant transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-primary text-primary" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-4 italic">"{review.text}"</p>
-                <div>
-                  <p className="font-bold">{review.name}</p>
-                  <p className="text-sm text-muted-foreground">{review.location}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <p className="text-muted-foreground mb-4">500+ Five-Star Reviews</p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

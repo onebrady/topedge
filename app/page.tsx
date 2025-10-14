@@ -10,24 +10,31 @@ import Community from "@/components/Community";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateOrganizationSchema } from "@/lib/seo/schemas";
 
 export default function Home() {
+  const organizationSchema = generateOrganizationSchema();
+
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <MembershipBanner />
-        <Locations />
-        <Pricing />
-        <Features />
-        <HowItWorks />
-        <Testimonials />
-        <Community />
-        <FAQ />
-      </main>
-      <Footer />
-      <ThemeToggle />
-    </div>
+    <>
+      <StructuredData data={organizationSchema} />
+      <div className="min-h-screen">
+        <Header />
+        <main>
+          <Hero />
+          <MembershipBanner />
+          <Locations />
+          <Pricing />
+          <Features />
+          <HowItWorks />
+          <Testimonials />
+          <Community />
+          <FAQ />
+        </main>
+        <Footer />
+        <ThemeToggle />
+      </div>
+    </>
   );
 }
