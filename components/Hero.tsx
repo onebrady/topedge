@@ -2,16 +2,21 @@
 
 import { Button } from "@/components/ui/button";
 import { MapPin, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 const Hero = () => {
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden -mt-[83px] pt-[83px]">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/assets/hero-car-wash.jpg"
           alt="Top Edge Car Wash Experience"
-          className="w-full h-full object-cover"
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40 dark:from-background/98 dark:via-background/90 dark:to-background/60" />
       </div>

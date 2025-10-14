@@ -37,7 +37,14 @@ const Header = () => {
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image src="/assets/logo.webp" alt="Top Edge Car Wash" width={160} height={64} className="h-12 md:h-16 w-auto" />
+            <Image
+              src="/assets/logo.webp"
+              alt="Top Edge Car Wash"
+              width={160}
+              height={64}
+              priority
+              className="h-12 md:h-16 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

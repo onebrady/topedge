@@ -11,7 +11,6 @@ const WeatherBar = () => {
     icon: string;
   } | null>(null);
   const [isVisible, setIsVisible] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -50,17 +49,15 @@ const WeatherBar = () => {
         }
 
         setWeather({ temp, condition, icon });
-        setIsLoading(false);
       } catch (error) {
         console.error('Failed to fetch weather:', error);
-        setIsLoading(false);
       }
     };
 
     fetchWeather();
   }, []);
 
-  if (!isVisible || isLoading) return null;
+  if (!isVisible) return null;
 
   const WeatherIcon = () => {
     switch (weather?.icon) {
@@ -80,7 +77,7 @@ const WeatherBar = () => {
   return (
     <div className="bg-gradient-to-r from-primary/90 to-primary text-primary-foreground py-2 px-4 relative">
       <div className="container mx-auto flex items-center justify-center gap-3">
-        {weather && (
+        {weather ? (
           <>
             <WeatherIcon />
             <p className="text-sm font-medium">
@@ -89,6 +86,11 @@ const WeatherBar = () => {
             <span className="text-xs opacity-80 hidden sm:inline">
               • Perfect day for a car wash! 🚗✨
             </span>
+          </>
+        ) : (
+          <>
+            <Cloud className="h-4 w-4 animate-pulse" />
+            <p className="text-sm font-medium">Loading Tampa weather...</p>
           </>
         )}
         <Button

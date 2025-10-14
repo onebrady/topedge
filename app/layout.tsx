@@ -56,7 +56,10 @@ export default function RootLayout({
           <WeatherBar />
           {children}
         </Providers>
-        <Script src="https://links.resultreach.com/js/form_embed.js" />
+        <Script
+          src="https://links.resultreach.com/js/form_embed.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
