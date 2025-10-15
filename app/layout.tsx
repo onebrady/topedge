@@ -75,6 +75,11 @@ export default function RootLayout({
           src="https://links.resultreach.com/js/form_embed.js"
           strategy="lazyOnload"
         />
+        <Script
+          src="https://links.resultreach.com/js/external-tracking.js"
+          data-tracking-id="tk_113e9a25ffbc4677a1874a8d436f7997"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
