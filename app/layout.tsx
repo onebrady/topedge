@@ -77,7 +77,7 @@ export default function RootLayout({
         />
         <Script
           src="https://links.resultreach.com/js/external-tracking.js"
-          data-tracking-id="tk_113e9a25ffbc4677a1874a8d436f7997"
+          data-tracking-id="tk_a5dbd432a6e44042ba3a92c34f1bbee7"
           strategy="lazyOnload"
         />
       </body>
