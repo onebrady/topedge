@@ -20,24 +20,24 @@ import { Loader2, Lock } from 'lucide-react';
 
 const checkoutSchema = z.object({
   // Customer Info
-  firstName: z.string().min(1, 'First name is required').max(50),
-  lastName: z.string().min(1, 'Last name is required').max(100),
-  email: z.string().email('Please enter a valid email'),
-  phone: z.string().regex(/^[0-9]{10}$/, 'Phone must be 10 digits'),
+  firstName: z.string().min(2, 'First name must be at least 2 characters').max(50, 'First name must not exceed 50 characters'),
+  lastName: z.string().min(2, 'Last name must be at least 2 characters').max(100, 'Last name must not exceed 100 characters'),
+  email: z.string().email('Please enter a valid email address').max(64, 'Email must not exceed 64 characters'),
+  phone: z.string().regex(/^[0-9]{10}$/, 'Phone must be exactly 10 digits'),
 
   // Payment Info
-  cardNumber: z.string().min(13, 'Card number must be at least 13 digits').max(19),
-  expMonth: z.number().int().min(1).max(12),
-  expYear: z.number().int().min(new Date().getFullYear()),
-  securityCode: z.string().min(3, 'CVV must be 3-4 digits').max(4),
-  cardFullName: z.string().min(1, 'Cardholder name is required').max(100),
+  cardNumber: z.string().regex(/^[\d]{15,16}$/, 'Card number must be 15-16 digits (Visa, MasterCard, Amex, or Discover)'),
+  expMonth: z.number().int().min(1, 'Month must be 1-12').max(12, 'Month must be 1-12'),
+  expYear: z.number().int().min(new Date().getFullYear(), 'Card has expired'),
+  securityCode: z.string().regex(/^[\d]{3,4}$/, 'CVV must be 3-4 digits'),
+  cardFullName: z.string().min(2, 'Cardholder name must be at least 2 characters').max(50, 'Cardholder name must not exceed 50 characters'),
 
   // Billing Address
-  street: z.string().min(1, 'Street address is required').max(50),
-  city: z.string().min(1, 'City is required').max(50),
-  state: z.string().regex(/^[A-Z]{2}$/, 'State must be 2 uppercase letters'),
-  postalCode: z.string().regex(/^[0-9]{5}(?:-[0-9]{4})?$/, 'Invalid postal code'),
-  billingPhone: z.string().regex(/^[0-9]{10}$/, 'Phone must be 10 digits'),
+  street: z.string().min(1, 'Street address is required').max(50, 'Street address must not exceed 50 characters'),
+  city: z.string().min(1, 'City is required').max(50, 'City must not exceed 50 characters'),
+  state: z.string().regex(/^[A-Z]{2}$/, 'State must be 2 uppercase letters (e.g., FL, CA)'),
+  postalCode: z.string().regex(/^[0-9]{5}(?:-[0-9]{4})?$/, 'Postal code must be 5 digits or 5+4 format (e.g., 12345 or 12345-6789)'),
+  billingPhone: z.string().regex(/^[0-9]{10}$/, 'Phone must be exactly 10 digits'),
 });
 
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
@@ -127,9 +127,16 @@ export default function CheckoutPage() {
             }));
             setValidationErrors(errors);
             setError('Please correct the validation errors below:');
+          } else if (typeof result.details === 'object') {
+            // Extract validation error messages from details object
+            const errorMessages = Object.entries(result.details).map(([field, message]) => ({
+              field: field,
+              message: message as string
+            }));
+            setValidationErrors(errorMessages);
+            setError('Please correct the following errors:');
           } else {
-            // If details is not an array, show it as is
-            setError(`Validation error: ${JSON.stringify(result.details)}`);
+            setError(result.message || 'Payment failed. Please check your information and try again.');
           }
         } else {
           setError(result.message || 'Payment failed. Please check your information and try again.');

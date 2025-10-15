@@ -16,8 +16,22 @@ export async function POST(req: NextRequest) {
     // Validate request body
     const body = PaymentRequestSchema.parse(json);
 
+    console.log('[API] Processing payment request:', {
+      pendingOrderToken: body.pendingOrderToken.substring(0, 10) + '...',
+      customerEmail: body.customer.email,
+    });
+
     // Process payment
     const result = await processPayment(body);
+
+    console.log('[API] Payment raw result:', JSON.stringify(result, null, 2));
+    console.log('[API] Payment result type:', typeof result);
+    console.log('[API] Payment result keys:', Object.keys(result || {}));
+
+    console.log('[API] Payment successful:', {
+      customerId: result?.customerId,
+      receiptId: result?.receiptId,
+    });
 
     return NextResponse.json(createSuccess(result));
   } catch (error: any) {
@@ -28,7 +42,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.error('[API] Payment error:', error);
+    console.error('[API] Payment error:', {
+      code: error.code,
+      message: error.message,
+      status: error.status,
+      details: error.details,
+      stack: error.stack,
+      fullError: JSON.stringify(error, Object.getOwnPropertyNames(error)),
+    });
     const message = getFriendlyErrorMessage(error.code || 'UnexpectedFailure');
     return NextResponse.json(
       createError(error.code || 'UnexpectedFailure', message, error.details),

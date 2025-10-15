@@ -223,7 +223,7 @@ function JoinPageContent() {
                     First {plan.trialLength} months at ${plan.trialPrice.toFixed(2)}
                   </p>
                 )}
-                {plan.isAnnual && savings && savings > 0 && (
+                {plan.isAnnual && savings !== null && savings > 0 && (
                   <div className="mt-2 inline-block">
                     <span className="text-xs font-semibold text-green-700 bg-green-100 px-2 py-1 rounded-full">
                       Save ${savings.toFixed(2)}/year
@@ -269,7 +269,6 @@ function JoinPageContent() {
               {/* Badges */}
               <div className="flex flex-wrap gap-2">
                 {plan.isAnnual && <Badge variant="secondary">Annual Plan</Badge>}
-                {plan.lprEnabled && <Badge variant="default">LPR</Badge>}
                 {plan.hasTrial && <Badge variant="outline" className="border-green-600 text-green-600">Trial Available</Badge>}
               </div>
             </CardContent>

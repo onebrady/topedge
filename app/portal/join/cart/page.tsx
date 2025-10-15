@@ -20,11 +20,11 @@ import { Loader2, MapPin } from 'lucide-react';
 
 const cartSchema = z.object({
   licensePlate: z.string()
-    .regex(/^[A-Za-z0-9]{3,10}$/, 'License plate must be 3-10 alphanumeric characters')
+    .regex(/^[A-Za-z0-9]{3,10}$/, 'License plate must be 3-10 alphanumeric characters (no spaces or special characters)')
     .optional()
     .or(z.literal('')),
   discountCode: z.string().optional(),
-  siteCode: z.string().min(1, 'Please select a site'),
+  siteCode: z.string().min(1, 'Please select a car wash location'),
 });
 
 type CartFormData = z.infer<typeof cartSchema>;
@@ -131,7 +131,20 @@ function CartPageContent() {
       const result = await response.json();
 
       if (!result.ok) {
-        setError(result.message || 'Failed to create order');
+        // Handle validation errors with specific details
+        if (result.code === 'PayloadValidationError' && result.details) {
+          // Extract the first validation error detail
+          const errorDetails = result.details;
+          const firstError = Object.values(errorDetails)[0];
+
+          if (typeof firstError === 'string') {
+            setError(firstError);
+          } else {
+            setError(result.message || 'Failed to create order. Please check your input.');
+          }
+        } else {
+          setError(result.message || 'Failed to create order');
+        }
         return;
       }
 

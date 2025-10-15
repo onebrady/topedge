@@ -143,11 +143,16 @@ export interface CreatePendingOrderRequest {
 /**
  * Create a detailed pending order
  */
-export const createDetailedPendingOrder = (body: CreatePendingOrderRequest) =>
-  ecomFetch<DetailedPendingOrder>('/shop/detailed-pending-order', {
+export const createDetailedPendingOrder = async (body: CreatePendingOrderRequest) => {
+  const response = await ecomFetch<{ data: DetailedPendingOrder }>('/shop/detailed-pending-order', {
     method: 'POST',
     body: JSON.stringify(body),
   });
+
+  console.log('[ECOM] Raw pending order response:', JSON.stringify(response, null, 2));
+
+  return response.data;
+};
 
 // ==================== Payment ====================
 
@@ -180,24 +185,27 @@ export interface PaymentRequest {
  * Process payment for new customer
  */
 export const processPayment = async (body: PaymentRequest): Promise<PaymentResponse> => {
-  const response = await ecomFetch<{ data: PaymentResponse[] }>('/shop/payment', {
+  const response = await ecomFetch<{ data: PaymentResponse }>('/shop/payment', {
     method: 'POST',
     body: JSON.stringify(body),
   });
 
-  // API returns data as an array with one element, extract it
-  return response.data[0];
+  console.log('[ECOM] Raw payment response:', JSON.stringify(response, null, 2));
+  console.log('[ECOM] Payment response has data:', !!response.data);
+
+  // API returns data as an object, extract it
+  return response.data;
 };
 
 /**
  * Process payment for authenticated customer
  */
-export const processCustomerPayment = (
+export const processCustomerPayment = async (
   customerId: string,
   customerToken: string,
   pendingOrderToken: string
-) =>
-  ecomFetch<PaymentResponse>(
+) => {
+  const response = await ecomFetch<{ data: PaymentResponse }>(
     `/shop/customer/${customerId}/payment`,
     {
       method: 'POST',
@@ -205,6 +213,9 @@ export const processCustomerPayment = (
     },
     customerToken
   );
+  // API returns data as an object, extract it
+  return response.data;
+};
 
 // ==================== Customer Authentication ====================
 
@@ -217,24 +228,28 @@ export interface RegisterRequest {
 /**
  * Register/mint customer token for authentication
  */
-export const registerCustomer = (body: RegisterRequest) =>
-  ecomFetch<CustomerRegisterResponse>('/customer/register', {
+export const registerCustomer = async (body: RegisterRequest) => {
+  const response = await ecomFetch<{ data: CustomerRegisterResponse }>('/customer/register', {
     method: 'POST',
     body: JSON.stringify(body),
   });
+  return response.data;
+};
 
 // ==================== Receipts ====================
 
 /**
  * Get order receipt
  */
-export const getReceipt = (
+export const getReceipt = async (
   customerId: string,
   receiptId: string,
   customerToken: string
-) =>
-  ecomFetch<OrderReceipt>(
+) => {
+  const response = await ecomFetch<{ data: OrderReceipt }>(
     `/customer/${customerId}/order/receipt/${receiptId}`,
     {},
     customerToken
   );
+  return response.data;
+};

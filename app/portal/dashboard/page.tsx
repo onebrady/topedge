@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Calendar, CreditCard, Car, Tag, AlertCircle } from 'lucide-react';
+import { ErrorActionButtons, LogoutButton } from '@/components/refresh-button';
 import Link from 'next/link';
 
 export default async function DashboardPage() {
@@ -45,21 +46,23 @@ export default async function DashboardPage() {
   if (accountError) {
     // Check if this is a 404 error (customer not found in BackOffice sandbox)
     const is404 = errorStatus === 404;
+    // Check if this is a 500 error (newly created account not yet synced)
+    const is500 = errorStatus === 500;
 
     return (
       <div className="max-w-4xl mx-auto">
         <div className={`border rounded-lg p-6 text-center ${
-          is404 ? 'bg-blue-50 border-blue-200' : 'bg-red-50 border-red-200'
+          is404 || is500 ? 'bg-blue-50 border-blue-200' : 'bg-red-50 border-red-200'
         }`}>
           <AlertCircle className={`h-12 w-12 mx-auto mb-4 ${
-            is404 ? 'text-blue-600' : 'text-red-600'
+            is404 || is500 ? 'text-blue-600' : 'text-red-600'
           }`} />
           <h3 className={`text-lg font-semibold mb-2 ${
-            is404 ? 'text-blue-900' : 'text-red-900'
+            is404 || is500 ? 'text-blue-900' : 'text-red-900'
           }`}>
-            {is404 ? 'Sandbox Limitation' : 'Unable to Load Dashboard'}
+            {is404 ? 'Sandbox Limitation' : is500 ? 'Account Setup In Progress' : 'Unable to Load Dashboard'}
           </h3>
-          <p className={`mb-4 ${is404 ? 'text-blue-700' : 'text-red-700'}`}>
+          <p className={`mb-4 ${is404 || is500 ? 'text-blue-700' : 'text-red-700'}`}>
             {is404 ? (
               <>
                 Your customer account (ID: <code className="font-mono bg-blue-100 px-2 py-1 rounded">{customerId}</code>) exists in the eCommerce sandbox, but not in the BackOffice sandbox.
@@ -72,11 +75,17 @@ export default async function DashboardPage() {
                   <li>Log in with an existing customer account</li>
                 </ul>
               </>
+            ) : is500 ? (
+              <>
+                Your account (ID: <code className="font-mono bg-blue-100 px-2 py-1 rounded">{customerId}</code>) was just created and is being set up in our system.
+                <br /><br />
+                <strong>This usually takes a few minutes.</strong>
+                <br /><br />
+                Please check back shortly. If you continue to see this message after 10 minutes, please contact support.
+              </>
             ) : accountError}
           </p>
-          <Link href="/portal">
-            <Button variant="outline">Return to Portal</Button>
-          </Link>
+          <ErrorActionButtons showRefresh={is500} />
         </div>
       </div>
     );
@@ -94,9 +103,7 @@ export default async function DashboardPage() {
           </h2>
           <p className="text-gray-600">Manage your car wash membership</p>
         </div>
-        <Link href="/portal">
-          <Button variant="outline">Portal Home</Button>
-        </Link>
+        <LogoutButton />
       </div>
 
       {/* Membership Overview */}
@@ -132,7 +139,7 @@ export default async function DashboardPage() {
               <div>
                 <p className="text-sm text-gray-600">Billing Amount</p>
                 <p className="font-semibold">
-                  ${account?.billingAmount?.toFixed(2) || '0.00'}
+                  ${account?.billingAmount ? (typeof account.billingAmount === 'string' ? parseFloat(account.billingAmount) : account.billingAmount).toFixed(2) : '0.00'}
                 </p>
               </div>
             </div>
@@ -154,7 +161,7 @@ export default async function DashboardPage() {
           {account?.isOnTrial && (
             <div className="bg-green-50 border border-green-200 rounded-md p-4">
               <p className="text-sm text-green-800">
-                <strong>Trial Price Active:</strong> You're currently on a trial price of ${account.trialAmount?.toFixed(2) || '0.00'}
+                <strong>Trial Price Active:</strong> You're currently on a trial price of ${account.trialAmount ? (typeof account.trialAmount === 'string' ? parseFloat(account.trialAmount) : account.trialAmount).toFixed(2) : '0.00'}
               </p>
             </div>
           )}
@@ -261,7 +268,7 @@ export default async function DashboardPage() {
                   <div key={idx} className="flex items-center justify-between py-2 border-b last:border-0">
                     <div>
                       <p className="font-medium">
-                        ${billing.amountCharged.toFixed(2)}
+                        ${typeof billing.amountCharged === 'number' ? billing.amountCharged.toFixed(2) : parseFloat(billing.amountCharged).toFixed(2)}
                       </p>
                       <p className="text-xs text-gray-500">
                         {new Date(billing.date).toLocaleDateString()}

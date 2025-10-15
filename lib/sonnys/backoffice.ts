@@ -29,10 +29,18 @@ async function boFetch<T>(path: string, init: RequestInit = {}): Promise<T> {
   });
 
   if (!res.ok) {
+    console.error('[BO] API error response:', {
+      path,
+      status: res.status,
+      statusText: res.statusText,
+    });
     throw await formatError(res);
   }
 
-  return res.json() as Promise<T>;
+  const data = await res.json();
+  console.log('[BO] API response for', path, ':', JSON.stringify(data, null, 2).substring(0, 300));
+
+  return data as T;
 }
 
 // ==================== Types ====================
@@ -146,17 +154,85 @@ export const getCustomer = (customerId: string) =>
 
 /**
  * Get recurring account details for a customer
+ * Note: This finds the account by customer ID, then fetches details by account ID
  */
-export const getRecurringAccount = (customerId: string) =>
-  boFetch<RecurringAccount>(`/recurring/account/${customerId}`);
+export const getRecurringAccount = async (customerId: string): Promise<RecurringAccount> => {
+  // First, find the account ID for this customer
+  const listResponse = await boFetch<{
+    data: {
+      accounts: Array<{ id: string; customerId: string; statusName: string }>;
+    };
+  }>(`/recurring/account/list?limit=100`);
+
+  // Find the account for this customer (prefer Active status)
+  const customerAccounts = listResponse.data.accounts.filter(
+    (acc) => acc.customerId === customerId
+  );
+
+  if (customerAccounts.length === 0) {
+    const error: any = new Error('No recurring account found for this customer');
+    error.status = 404;
+    error.code = 'EntityNotFoundError';
+    throw error;
+  }
+
+  // Get the first active account, or just the first one
+  const account =
+    customerAccounts.find((acc) => acc.statusName === 'Active' || acc.statusName === 'ACTIVE') ||
+    customerAccounts[0];
+
+  const accountId = account.id;
+
+  console.log('[BO] Found account ID for customer:', { customerId, accountId });
+
+  // Now fetch the full account details using the account ID
+  const detailResponse = await boFetch<{ data: RecurringAccount }>(`/recurring/account/${accountId}/detail`);
+  return detailResponse.data;
+};
 
 /**
  * Get recurring billings for a customer
+ * Note: This finds the account by customer ID, then fetches billings by account ID
  */
-export const getRecurringBillings = (customerId: string, limit = 24) =>
-  boFetch<RecurringBilling[]>(
-    `/recurring/account/${customerId}/billings?limit=${limit}`
+export const getRecurringBillings = async (customerId: string, limit = 24): Promise<RecurringBilling[]> => {
+  // First, find the account ID for this customer
+  const listResponse = await boFetch<{
+    data: {
+      accounts: Array<{ id: string; customerId: string; statusName: string }>;
+    };
+  }>(`/recurring/account/list?limit=100`);
+
+  // Find the account for this customer
+  const customerAccounts = listResponse.data.accounts.filter(
+    (acc) => acc.customerId === customerId
   );
+
+  if (customerAccounts.length === 0) {
+    // No account found, return empty array
+    return [];
+  }
+
+  // Get the first active account, or just the first one
+  const account =
+    customerAccounts.find((acc) => acc.statusName === 'Active' || acc.statusName === 'ACTIVE') ||
+    customerAccounts[0];
+
+  const accountId = account.id;
+
+  console.log('[BO] Found account ID for billings:', { customerId, accountId });
+
+  // Now fetch billings using the account ID - billings endpoint may return empty array or error for new accounts
+  try {
+    const billingsResponse = await boFetch<{ data: RecurringBilling[] }>(
+      `/recurring/account/${accountId}/billings?limit=${limit}`
+    );
+    return billingsResponse.data || [];
+  } catch (error) {
+    // If billings endpoint fails (e.g., for new accounts with no billing history), return empty array
+    console.log('[BO] No billings found for account:', accountId);
+    return [];
+  }
+};
 
 // ==================== Sites ====================
 

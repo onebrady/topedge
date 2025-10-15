@@ -18,9 +18,14 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2 } from 'lucide-react';
 
 const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  productCode: z.string().min(3, 'Product code must be at least 3 characters'),
-  lastFourCreditCard: z.string().length(4, 'Must be exactly 4 digits').regex(/^\d+$/, 'Must be numeric'),
+  email: z.string().email('Please enter a valid email address').max(64, 'Email must not exceed 64 characters'),
+  productCode: z.string()
+    .min(3, 'RFID/License plate must be at least 3 characters')
+    .max(50, 'RFID/License plate must not exceed 50 characters')
+    .regex(/^[A-Za-z0-9-]+$/, 'RFID/License plate must contain only letters, numbers, and hyphens'),
+  lastFourCreditCard: z.string()
+    .length(4, 'Must be exactly 4 digits')
+    .regex(/^\d{4}$/, 'Must be 4 numeric digits'),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;

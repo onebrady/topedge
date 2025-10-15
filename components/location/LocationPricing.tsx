@@ -93,7 +93,7 @@ const LocationPricing = ({ isFoundersClub = false, locationName }: LocationPrici
 
                   {premierePackage.monthly && (
                     <Button size="lg" className="w-full gradient-primary text-lg py-6" asChild>
-                      <a href="/contact">
+                      <a href="/portal/join">
                         {isFoundersClub ? 'Join as Founder Member' : 'Join Unlimited'}
                       </a>
                     </Button>
@@ -154,7 +154,7 @@ const LocationPricing = ({ isFoundersClub = false, locationName }: LocationPrici
                 <div className="mt-auto">
                   {(pkg.monthly || getPackagePrice(pkg, 'monthly')) ? (
                     <Button className="w-full gradient-primary" asChild>
-                      <a href="/contact">
+                      <a href="/portal/join">
                         {isFoundersClub ? 'Join as Founder Member' : 'Join Unlimited'}
                       </a>
                     </Button>

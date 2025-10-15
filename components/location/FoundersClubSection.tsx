@@ -100,7 +100,7 @@ const FoundersClubSection = () => {
               </div>
 
               <Button size="lg" className="w-full gradient-primary" asChild>
-                <a href="/contact">
+                <a href="/portal/join">
                   Join Founder's Club Now
                 </a>
               </Button>
