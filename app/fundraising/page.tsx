@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateBreadcrumbSchema, generateServiceSchema, generateFAQSchema } from "@/lib/seo/schemas";
 import {
   Accordion,
   AccordionContent,
@@ -48,9 +50,36 @@ export default function Fundraising() {
     };
   }, []);
 
+  // Schema data
+  const breadcrumbs = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://topedgecarwashes.com' },
+    { name: 'Fundraising', url: 'https://topedgecarwashes.com/fundraising' },
+  ]);
+
+  const serviceSchema = generateServiceSchema();
+
+  const fundraisingFAQs = [
+    { question: "How soon can I start the fundraiser?", answer: "Your customer webpage will be activated within 3 business days of approval." },
+    { question: "How do we receive our funds?", answer: "As part of the setup process, you will connect a Stripe account to your bank account. Stripe deposits funds weekly throughout the length of the fundraiser event. You will receive any funds collected from the previous Wednesday through the upcoming Thursday on the following Friday. The funds will be deposited directly from Stripe into whatever account the fundraiser enters when signing up for Stripe." },
+    { question: "How do we track our progress?", answer: "You'll have access to a real-time dashboard where you can view total sales and earnings, track individual supporter contributions, monitor progress toward your goal, export reports for your records, and see top performers in your organization." },
+    { question: "What payment forms are accepted?", answer: "Your supporters can purchase washes using all major credit and debit cards, including Visa, Mastercard, American Express, Discover, and digital wallets (Apple Pay, Google Pay)." },
+    { question: "Are there any upfront costs?", answer: "No! There are absolutely no upfront costs or hidden fees." },
+    { question: "What percentage of sales do we receive?", answer: "The fundraiser makes 50% of the sales! This is one of the highest commission rates in the industry." },
+    { question: "How long can our fundraiser run?", answer: "Fundraisers can run for 30-90 days, with extensions available upon request." },
+    { question: "Is there a minimum sales requirement?", answer: "No minimum sales required! Every wash sold helps your organization." },
+    { question: "Which locations participate?", answer: "All Top Edge Car Wash locations in the Tampa Bay area participate in the fundraising program." },
+    { question: "What type of washes can supporters purchase?", answer: "Supporters can purchase our standard wash packages at regular retail prices, with your organization receiving 50% commission on each sale." },
+  ];
+
+  const faqSchema = generateFAQSchema(fundraisingFAQs);
+
   return (
-    <div className="min-h-screen">
-      <Header />
+    <>
+      <StructuredData data={breadcrumbs} />
+      <StructuredData data={serviceSchema} />
+      <StructuredData data={faqSchema} />
+      <div className="min-h-screen">
+        <Header />
       <main>
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-b from-primary/10 to-background">
@@ -521,9 +550,10 @@ export default function Fundraising() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-      <ThemeToggle />
-    </div>
+        </main>
+        <Footer />
+        <ThemeToggle />
+      </div>
+    </>
   );
 }

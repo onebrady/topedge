@@ -66,9 +66,9 @@ export const locationsData: LocationData[] = [
       title: "Founder's Club Exclusive",
       description: "First Month FREE + $10 OFF Every Month for Life",
     },
-    metaTitle: "Port Richey Car Wash | Top Edge Car Washes | First Month FREE",
+    metaTitle: "Port Richey Car Wash | Top Edge | First Month FREE",
     metaDescription:
-      "Port Richey's premier car wash. Join our Founder's Club & get your first month FREE + save $10/mo for life. Free vacuums, light show & more!",
+      "Port Richey car wash with Founder's Club: First month FREE + $10/mo off for life! Free vacuums, light show, unlimited washes. Join today at Top Edge!",
   },
   {
     id: "wesley-chapel",
@@ -101,9 +101,9 @@ export const locationsData: LocationData[] = [
       "Eco-Friendly",
       "Dual Belt System",
     ],
-    metaTitle: "Wesley Chapel Car Wash | Top Edge Car Washes | Original Location",
+    metaTitle: "Wesley Chapel Car Wash | Top Edge | Original Location",
     metaDescription:
-      "Wesley Chapel's original Top Edge Car Wash. Unlimited washes from $25/mo. Free vacuums, light show, no contracts. Cancel anytime!",
+      "Wesley Chapel's original Top Edge Car Wash! Unlimited washes from $25/mo with license plate recognition, free vacuums, members-only lane. Cancel anytime!",
   },
   {
     id: "tampa",
@@ -136,9 +136,9 @@ export const locationsData: LocationData[] = [
       "Eco-Friendly",
       "Dual Belt System",
     ],
-    metaTitle: "Tampa Car Wash | Top Edge Car Washes | West Waters Ave",
+    metaTitle: "Tampa Car Wash | Top Edge | West Waters Avenue",
     metaDescription:
-      "West Tampa's favorite car wash on West Waters Ave. Unlimited washes from $25/mo. Free vacuums, members-only lane. No contracts!",
+      "Tampa car wash on West Waters Ave! Unlimited washes from $25/mo with license plate recognition, free vacuums, light show, members-only lane. No contracts!",
   },
 ];
 

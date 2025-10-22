@@ -9,7 +9,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
 import StructuredData from "@/components/seo/StructuredData";
-import { generateOrganizationSchema } from "@/lib/seo/schemas";
+import { generateOrganizationSchema, generateAggregateRatingSchema } from "@/lib/seo/schemas";
 
 // Lazy load below-the-fold components for better performance
 const Testimonials = dynamic(() => import("@/components/Testimonials"), {
@@ -24,10 +24,12 @@ const FAQ = dynamic(() => import("@/components/FAQ"), {
 
 export default function Home() {
   const organizationSchema = generateOrganizationSchema();
+  const aggregateRatingSchema = generateAggregateRatingSchema(4.8, 500);
 
   return (
     <>
       <StructuredData data={organizationSchema} />
+      <StructuredData data={aggregateRatingSchema} />
       <div className="min-h-screen">
         <Header />
         <main>

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 export default function PortRicheyLocation() {
   const breadcrumbs = generateBreadcrumbSchema([
     { name: 'Home', url: 'https://topedgecarwashes.com' },
-    { name: 'Locations', url: 'https://topedgecarwashes.com/locations/${location.slug}' },
+    { name: 'Locations', url: 'https://topedgecarwashes.com/locations' },
     { name: location.name, url: `https://topedgecarwashes.com/locations/${location.slug}` },
   ]);
 

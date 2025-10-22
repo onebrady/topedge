@@ -5,8 +5,8 @@ import WeatherBar from "@/components/WeatherBar";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Top Edge Car Washes | Premium Express Car Wash - Tampa Bay",
-  description: "Experience Florida's premier car wash with unlimited plans starting at $25/month. License plate recognition, members-only lanes, and free vacuums at 3 Tampa Bay locations.",
+  title: "Top Edge Car Wash | Tampa Bay - Unlimited $25/mo",
+  description: "Tampa Bay's premier car wash! Unlimited plans from $25/mo with license plate recognition, members-only lanes, free vacuums. 3 locations serving you.",
   authors: [{ name: "Top Edge Car Washes" }],
   icons: {
     icon: [
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     canonical: "https://topedgecarwashes.com",
   },
   openGraph: {
-    title: "Top Edge Car Washes | Premium Express Car Wash - Tampa Bay",
-    description: "Experience Florida's premier car wash with unlimited plans starting at $25/month. Three convenient Tampa Bay locations.",
+    title: "Top Edge Car Wash | Tampa Bay - Unlimited $25/mo",
+    description: "Tampa Bay's premier car wash! Unlimited plans from $25/mo with license plate recognition, members-only lanes, free vacuums. 3 locations serving you.",
     url: "https://topedgecarwashes.com",
     siteName: "Top Edge Car Washes",
     locale: "en_US",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Top Edge Car Washes | Premium Express Car Wash",
-    description: "Experience Florida's premier car wash with unlimited plans starting at $25/month.",
+    title: "Top Edge Car Wash | Tampa Bay - Unlimited $25/mo",
+    description: "Tampa Bay's premier car wash! Unlimited plans from $25/mo with license plate recognition, members-only lanes, free vacuums.",
     images: ["https://topedgecarwashes.com/og-image.jpg"],
   },
 };

@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MembershipBanner from "@/components/MembershipBanner";
 import Locations from "@/components/Locations";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateBreadcrumbSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
   title: "Contact Us - Top Edge Car Wash | Tampa Bay Locations",
@@ -10,9 +12,16 @@ export const metadata: Metadata = {
 };
 
 export default function Contact() {
+  const breadcrumbs = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://topedgecarwashes.com' },
+    { name: 'Contact', url: 'https://topedgecarwashes.com/contact' },
+  ]);
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <>
+      <StructuredData data={breadcrumbs} />
+      <div className="min-h-screen flex flex-col">
+        <Header />
 
       {/* Hero Section */}
       <section className="pt-32 pb-12 bg-gradient-to-b from-primary/5 to-background">
@@ -66,7 +75,8 @@ export default function Contact() {
       {/* Locations */}
       <Locations />
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }

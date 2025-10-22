@@ -2,9 +2,17 @@
  * Customer Portal Layout
  */
 
+import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function PortalLayout({ children }: { children: ReactNode }) {
   return (

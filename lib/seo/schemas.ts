@@ -160,3 +160,51 @@ export function generateReviewSchema(
     },
   }))
 }
+
+export function generateAggregateRatingSchema(
+  averageRating: number,
+  reviewCount: number,
+  bestRating: number = 5
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Top Edge Car Washes',
+    url: 'https://topedgecarwashes.com',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: averageRating.toString(),
+      reviewCount: reviewCount.toString(),
+      bestRating: bestRating.toString(),
+      worstRating: '1',
+    },
+  }
+}
+
+export function generateServiceSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Car Wash Fundraising Program',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Top Edge Car Washes',
+      url: 'https://topedgecarwashes.com',
+    },
+    description: 'Raise funds for your organization with no upfront costs. 50% commission on all sales, easy online platform, weekly payouts. Perfect for schools, sports teams, nonprofits, and community groups.',
+    serviceType: 'Fundraising Program',
+    areaServed: {
+      '@type': 'City',
+      name: 'Tampa Bay',
+    },
+    offers: {
+      '@type': 'Offer',
+      description: '50% commission on all car wash sales',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    },
+  }
+}

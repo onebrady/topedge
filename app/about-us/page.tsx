@@ -5,16 +5,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Sparkles, Heart, Leaf, Music, Users, MapPin, Phone, Mail, Facebook, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateBreadcrumbSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
-  title: "About Us - Top Edge Car Wash | Family-Owned Tampa Bay Car Wash",
-  description: "Learn about Top Edge Car Wash, a locally owned, family-operated business serving Tampa Bay with state-of-the-art technology, eco-friendly practices, and exceptional customer service.",
+  title: "About Us | Top Edge Car Wash - Family Owned Tampa Bay",
+  description: "Family-owned Top Edge Car Wash serves Tampa Bay with cutting-edge tech, eco-friendly practices, and exceptional service. Unlimited washes from $25/mo!",
   alternates: {
     canonical: "https://topedgecarwashes.com/about-us",
   },
   openGraph: {
-    title: "About Us - Top Edge Car Wash | Family-Owned Tampa Bay Car Wash",
-    description: "Learn about Top Edge Car Wash, a locally owned, family-operated business serving Tampa Bay with state-of-the-art technology, eco-friendly practices, and exceptional customer service.",
+    title: "About Us | Top Edge Car Wash - Family Owned Tampa Bay",
+    description: "Family-owned Top Edge Car Wash serves Tampa Bay with cutting-edge tech, eco-friendly practices, and exceptional service. Unlimited washes from $25/mo!",
     url: "https://topedgecarwashes.com/about-us",
     type: "website",
     images: [
@@ -27,6 +29,11 @@ export const metadata: Metadata = {
 };
 
 export default function AboutUs() {
+  const breadcrumbs = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://topedgecarwashes.com' },
+    { name: 'About Us', url: 'https://topedgecarwashes.com/about-us' },
+  ]);
+
   const values = [
     {
       icon: Sparkles,
@@ -64,8 +71,10 @@ export default function AboutUs() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <>
+      <StructuredData data={breadcrumbs} />
+      <div className="min-h-screen bg-background">
+        <Header />
 
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-primary/10 via-background to-secondary/20">
@@ -255,7 +264,8 @@ export default function AboutUs() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }
