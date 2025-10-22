@@ -1,11 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, MapPin } from "lucide-react";
+import { Menu, X, MapPin, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { locationsData } from "@/lib/data/locationsData";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,9 +60,31 @@ const Header = () => {
             <a href="/#pricing" className={`${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium`}>
               Pricing
             </a>
-            <Link href="/locations" className={`${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium`}>
-              Locations
-            </Link>
+
+            {/* Locations Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className={`flex items-center gap-1 ${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium outline-none`}>
+                Locations
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link href="/locations" className="cursor-pointer">
+                    <MapPin className="mr-2 h-4 w-4" />
+                    All Locations
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                {locationsData.map((location) => (
+                  <DropdownMenuItem key={location.id} asChild>
+                    <Link href={`/locations/${location.slug}`} className="cursor-pointer">
+                      {location.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Link href="/contact" className={`${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium`}>
               Contact
             </Link>
@@ -92,9 +122,26 @@ const Header = () => {
               <a href="/#pricing" className="text-foreground hover:text-primary transition-colors font-medium">
                 Pricing
               </a>
-              <Link href="/locations" className="text-foreground hover:text-primary transition-colors font-medium">
-                Locations
-              </Link>
+
+              {/* Mobile Locations Dropdown */}
+              <div className="flex flex-col gap-2">
+                <Link href="/locations" className="text-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
+                  Locations
+                  <ChevronDown className="h-4 w-4" />
+                </Link>
+                <div className="pl-4 flex flex-col gap-2 text-sm">
+                  {locationsData.map((location) => (
+                    <Link
+                      key={location.id}
+                      href={`/locations/${location.slug}`}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {location.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               <Link href="/contact" className="text-foreground hover:text-primary transition-colors font-medium">
                 Contact
               </Link>

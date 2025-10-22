@@ -1,14 +1,15 @@
 import { MapPin, Phone, Mail, Facebook, Instagram } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { locationsData } from "@/lib/data/locationsData";
 
 const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Logo & Description */}
-          <div className="md:col-span-1">
+          <div className="md:col-span-2 lg:col-span-1">
             <Image src="/assets/logo.webp" alt="Top Edge Car Wash" width={160} height={64} className="h-16 w-auto mb-4" />
             <p className="text-sm text-muted-foreground">
               Tampa Bay's premier car wash experience with three convenient locations.
@@ -26,7 +27,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/locations" className="hover:text-primary transition-colors">
-                  Locations
+                  All Locations
                 </Link>
               </li>
               <li>
@@ -34,6 +35,20 @@ const Footer = () => {
                   Join Unlimited
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Locations */}
+          <div>
+            <h4 className="font-bold mb-4">Our Locations</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              {locationsData.map((location) => (
+                <li key={location.id}>
+                  <Link href={`/locations/${location.slug}`} className="hover:text-primary transition-colors">
+                    {location.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
