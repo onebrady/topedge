@@ -85,6 +85,10 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
+            <Link href="/manage-membership" className={`${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium`}>
+              Manage Membership
+            </Link>
+
             <Link href="/contact" className={`${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium`}>
               Contact
             </Link>
@@ -141,6 +145,10 @@ const Header = () => {
                   ))}
                 </div>
               </div>
+
+              <Link href="/manage-membership" className="text-foreground hover:text-primary transition-colors font-medium">
+                Manage Membership
+              </Link>
 
               <Link href="/contact" className="text-foreground hover:text-primary transition-colors font-medium">
                 Contact
