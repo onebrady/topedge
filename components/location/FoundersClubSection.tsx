@@ -100,7 +100,7 @@ const FoundersClubSection = () => {
               </div>
 
               <Button size="lg" className="w-full gradient-primary" asChild>
-                <a href="/portal/join">
+                <a href="https://topedgecarwash.mywashaccount.com/">
                   Join Founder's Club Now
                 </a>
               </Button>

@@ -156,7 +156,7 @@ lib/
 │   ├── errors.ts                 # Error handling utilities
 │   └── validators.ts             # Zod validation schemas
 ├── data/locationsData.ts         # Location information
-├── seo/schemas.ts                # SEO structured data
+├── seo/schemas.ts                # SEO structured data generators
 ├── redirects.ts                  # 301 redirects (used in next.config.ts)
 └── utils.ts                      # General utilities
 
@@ -187,6 +187,20 @@ components/
   - Dashboard shows informative message for sandbox-only customers
 - Production URLs differ (see README.md or .env.example)
 
+## Location & Pricing Data
+
+Location and pricing data is centralized in `lib/data/locationsData.ts`:
+
+- **locationsData** - Array of location objects with address, hours, coordinates, features, and SEO metadata
+- **pricingPackages** - Wash packages with pricing (single, monthly, founderMonthly)
+  - Some packages have location-specific pricing (see `locationPricing` property)
+- **freeAmenities** - List of complimentary services (vacuums, mat cleaners, etc.)
+
+When working with locations:
+- Location pages use `app/locations/[slug]/page.tsx` pattern
+- SEO structured data generated via `lib/seo/schemas.ts`
+- Each location has unique slug, metadata, and optional badges
+
 ## Customer Flows
 
 ### New Customer Signup
@@ -210,6 +224,7 @@ When working on:
 - **Server Components**: `lib/sonnys/server.ts` (fetches from BFF routes)
 - **Redirects**: `lib/redirects.ts` (imported by `next.config.ts`)
 - **SEO**: `lib/seo/schemas.ts` (structured data for location pages)
+- **Locations**: `lib/data/locationsData.ts` (location details, pricing, amenities)
 
 ## Security Notes
 

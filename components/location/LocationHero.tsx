@@ -47,7 +47,7 @@ const LocationHero = ({ location, heroImage }: LocationHeroProps) => {
         <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
           {location.id === "port-richey" ? (
             <Button size="lg" className="gradient-primary text-lg px-8" asChild>
-              <a href="/portal/join">
+              <a href="https://topedgecarwash.mywashaccount.com/">
                 Join the Founder's Club
               </a>
             </Button>
