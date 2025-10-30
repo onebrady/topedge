@@ -52,7 +52,7 @@ export const locationsData: LocationData[] = [
     },
     status: "Open Now",
     isOpen: true,
-    badge: "🎉 Founder's Club - First Month FREE",
+    badge: "First 3 months $10",
     description: "Florida's Premier Car Wash Experience in Port Richey",
     features: [
       "Free Vacuums",

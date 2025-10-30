@@ -68,15 +68,15 @@ const FoundersClubSection = () => {
           <Card className="border-2 border-primary shadow-elegant">
             <CardHeader className="text-center">
               <Gift className="h-16 w-16 text-primary mx-auto mb-4" />
-              <CardTitle className="text-2xl">First Month FREE +<br />$10 OFF Every Month for Life</CardTitle>
+              <CardTitle className="text-2xl">First 3 Months Only $10/Month<br />+ $10 OFF for Life</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <p className="font-semibold text-center mb-4">Founder's Club Benefits:</p>
-                
+
                 {[
-                  'First month completely FREE',
-                  'Save $10 every month for life',
+                  'Pay just $10/month for your first 3 months',
+                  'Then save $10 every month for life on your selected plan',
                   'No long-term contract - cancel anytime',
                   'Works at all three Tampa Bay locations',
                   'Members-Only express lane',
@@ -101,7 +101,7 @@ const FoundersClubSection = () => {
 
               <Button size="lg" className="w-full gradient-primary" asChild>
                 <a href="https://topedgecarwash.mywashaccount.com/">
-                  Join Founder's Club Now
+                  Founders Club Special
                 </a>
               </Button>
 

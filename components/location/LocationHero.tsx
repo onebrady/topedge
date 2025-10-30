@@ -27,7 +27,7 @@ const LocationHero = ({ location, heroImage }: LocationHeroProps) => {
       <div className="container mx-auto px-4 relative z-10 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
           <Badge variant="outline" className="text-white border-white/50 bg-white/10 backdrop-blur-sm">
-            Top Edge Car Wash - {location.name}
+            {location.name}, {location.state}
           </Badge>
           {location.badge && (
             <Badge className="bg-primary text-primary-foreground">
