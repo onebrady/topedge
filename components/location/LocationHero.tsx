@@ -81,7 +81,7 @@ const LocationHero = ({ location, heroImage }: LocationHeroProps) => {
           </Button>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 text-white/90">
+        <div className="hidden sm:flex flex-wrap items-center justify-center gap-6 text-white/90">
           <div className="flex items-center gap-2">
             <Check className="h-5 w-5 text-success" />
             <span>Locally Owned</span>
