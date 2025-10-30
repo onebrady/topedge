@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import StructuredData from "@/components/seo/StructuredData";
 import { generateBreadcrumbSchema } from "@/lib/seo/schemas";
 import { CreditCard, UserCircle, Pause, XCircle, Car } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Manage Your Membership - Top Edge Car Wash",
@@ -30,9 +31,29 @@ export default function ManageMembership() {
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
                 Manage Your <span className="text-gradient">Membership</span>
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-muted-foreground mb-6">
                 Update your account details, payment information, or make changes to your unlimited membership
               </p>
+
+              {/* Port Richey Callout */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 inline-block">
+                <p className="text-sm text-blue-900 mb-3">
+                  For Port Richey location use this link
+                </p>
+                <Button
+                  size="sm"
+                  className="bg-primary hover:bg-primary/90"
+                  asChild
+                >
+                  <a
+                    href="https://topedgecarwash.mywashaccount.com/login"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Port Richey Member Login
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
