@@ -67,7 +67,7 @@ export default function Fundraising() {
     { question: "What percentage of sales do we receive?", answer: "The fundraiser makes 50% of the sales! This is one of the highest commission rates in the industry." },
     { question: "How long can our fundraiser run?", answer: "Fundraisers can run for 30-90 days, with extensions available upon request." },
     { question: "Is there a minimum sales requirement?", answer: "No minimum sales required! Every wash sold helps your organization." },
-    { question: "Which locations participate?", answer: "All Top Edge Car Wash locations in the Tampa Bay area participate in the fundraising program." },
+    { question: "Which locations participate?", answer: "The fundraising program is currently available at our Wesley Chapel location only." },
     { question: "What type of washes can supporters purchase?", answer: "Supporters can purchase our standard wash packages at regular retail prices, with your organization receiving 50% commission on each sale." },
   ];
 
@@ -90,6 +90,9 @@ export default function Fundraising() {
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground italic mb-8">
                 Bringing the community together one wash at a time
+              </p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Currently Available at Wesley Chapel Location Only
               </p>
               <Button size="lg" className="gradient-primary" asChild>
                 <a href="#apply">Start Your Fundraiser Today</a>
@@ -458,7 +461,7 @@ export default function Fundraising() {
                 <AccordionItem value="item-9">
                   <AccordionTrigger>Which locations participate?</AccordionTrigger>
                   <AccordionContent>
-                    All Top Edge Car Wash locations in the Tampa Bay area participate in the fundraising program.
+                    The fundraising program is currently available at our Wesley Chapel location only.
                   </AccordionContent>
                 </AccordionItem>
 

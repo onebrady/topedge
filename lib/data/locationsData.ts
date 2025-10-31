@@ -41,10 +41,10 @@ export const locationsData: LocationData[] = [
     zip: "34668",
     phone: "(813) 249-1800",
     email: "info@topedgecarwashes.com",
-    hours: "Mon-Sun: 8:00 AM - 8:00 PM",
+    hours: "Mon-Sat: 8:00 AM - 8:00 PM, Sun: 9:00 AM - 6:00 PM",
     hoursDetailed: {
       weekday: "Monday - Saturday: 8:00 AM - 8:00 PM",
-      weekend: "Sunday: 8:00 AM - 8:00 PM",
+      weekend: "Sunday: 9:00 AM - 6:00 PM",
     },
     coordinates: {
       lat: 28.2739,
@@ -64,11 +64,11 @@ export const locationsData: LocationData[] = [
     ],
     uniqueFeature: {
       title: "Founder's Club Exclusive",
-      description: "First Month FREE + $10 OFF Every Month for Life",
+      description: "First 3 Months Only $10/Month + $10 OFF for Life",
     },
-    metaTitle: "Port Richey Car Wash | Top Edge | First Month FREE",
+    metaTitle: "Port Richey Car Wash | Top Edge | Founder's Club Special",
     metaDescription:
-      "Port Richey car wash with Founder's Club: First month FREE + $10/mo off for life! Free vacuums, light show, unlimited washes. Join today at Top Edge!",
+      "Port Richey car wash with Founder's Club: First 3 months only $10/mo + $10 off for life! Free vacuums, light show, unlimited washes. Join today at Top Edge!",
   },
   {
     id: "wesley-chapel",

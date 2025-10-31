@@ -95,7 +95,7 @@ const Pricing = () => {
               <CardTitle className="text-3xl mb-2">Single Wash</CardTitle>
               <CardDescription className="text-lg">Pay as you go</CardDescription>
               <div className="mt-4">
-                <span className="text-5xl font-bold">$15</span>
+                <span className="text-5xl font-bold">$12</span>
                 <span className="text-muted-foreground">+</span>
               </div>
             </CardHeader>

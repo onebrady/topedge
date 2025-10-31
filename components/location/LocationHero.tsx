@@ -89,7 +89,7 @@ const LocationHero = ({ location, heroImage }: LocationHeroProps) => {
           {location.id === "port-richey" && (
             <div className="flex items-center gap-2">
               <Check className="h-5 w-5 text-success" />
-              <span>First Month FREE for New Members</span>
+              <span>First 3 Months $10/Month + $10 OFF for Life</span>
             </div>
           )}
           <div className="flex items-center gap-2">

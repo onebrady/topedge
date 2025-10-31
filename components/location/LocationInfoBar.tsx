@@ -49,7 +49,10 @@ const LocationInfoBar = ({ location }: LocationInfoBarProps) => {
             <div>
               <p className="font-semibold mb-1">Hours</p>
               <p className="text-sm text-muted-foreground">
-                Open Today: 8:00 AM - 8:00 PM
+                {location.hoursDetailed.weekday}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {location.hoursDetailed.weekend}
               </p>
             </div>
           </div>
