@@ -56,7 +56,7 @@ export default function TampaLocation() {
         <LocationHero location={location} heroImage="/assets/tampa-hero.webp" />
         <MembershipBanner />
         <LocationInfoBar location={location} />
-        <LocationPricing locationName={location.name} />
+        <LocationPricing locationName={location.name} joinUrl="/contact" />
         <FreeAmenities />
         <HowItWorks />
         <Footer />

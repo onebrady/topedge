@@ -56,7 +56,7 @@ export default function WesleyChapelLocation() {
         <LocationHero location={location} heroImage="/assets/wesley-chapel-hero.webp" />
         <MembershipBanner />
         <LocationInfoBar location={location} />
-        <LocationPricing locationName={location.name} />
+        <LocationPricing locationName={location.name} joinUrl="/contact" />
         <FreeAmenities />
         <HowItWorks />
         <Footer />
