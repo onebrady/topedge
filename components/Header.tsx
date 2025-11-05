@@ -85,9 +85,35 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link href="/manage-membership" className={`${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium`}>
-              Manage Membership
-            </Link>
+            {/* Manage Membership Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className={`flex items-center gap-1 ${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium outline-none`}>
+                Manage Membership
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuItem asChild>
+                  <a
+                    href="https://topedgecarwash.mywashaccount.com/login"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer"
+                  >
+                    Port Richey
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/manage-membership/tampa-florida" className="cursor-pointer">
+                    Tampa
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/manage-membership/wesley-chapel-florida" className="cursor-pointer">
+                    Wesley Chapel
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             <Link href="/contact" className={`${isLocationPage && !isScrolled ? 'text-white' : 'text-foreground'} hover:text-primary transition-colors font-medium`}>
               Contact
@@ -146,9 +172,35 @@ const Header = () => {
                 </div>
               </div>
 
-              <Link href="/manage-membership" className="text-foreground hover:text-primary transition-colors font-medium">
-                Manage Membership
-              </Link>
+              {/* Mobile Manage Membership Dropdown */}
+              <div className="flex flex-col gap-2">
+                <div className="text-foreground font-medium flex items-center gap-1">
+                  Manage Membership
+                  <ChevronDown className="h-4 w-4" />
+                </div>
+                <div className="pl-4 flex flex-col gap-2 text-sm">
+                  <a
+                    href="https://topedgecarwash.mywashaccount.com/login"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Port Richey
+                  </a>
+                  <Link
+                    href="/manage-membership/tampa-florida"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Tampa
+                  </Link>
+                  <Link
+                    href="/manage-membership/wesley-chapel-florida"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Wesley Chapel
+                  </Link>
+                </div>
+              </div>
 
               <Link href="/contact" className="text-foreground hover:text-primary transition-colors font-medium">
                 Contact
