@@ -19,7 +19,7 @@ const FoundersClubBanner = () => {
               <Sparkles className="h-5 w-5" />
             </p>
             <p className="text-black font-semibold">
-              First 3 Months Only $10/Month + $10 OFF for Life
+              First 3 Months Only $10/Month for New Members
             </p>
           </div>
           <Button 

@@ -64,7 +64,7 @@ export const locationsData: LocationData[] = [
     ],
     uniqueFeature: {
       title: "Founder's Club Exclusive",
-      description: "First 3 Months Only $10/Month + $10 OFF for Life",
+      description: "First 3 Months Only $10/Month for New Members",
     },
     metaTitle: "Port Richey Car Wash | Top Edge | Founder's Club Special",
     metaDescription:

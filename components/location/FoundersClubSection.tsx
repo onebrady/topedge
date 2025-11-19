@@ -68,20 +68,21 @@ const FoundersClubSection = () => {
           <Card className="border-2 border-primary shadow-elegant">
             <CardHeader className="text-center">
               <Gift className="h-16 w-16 text-primary mx-auto mb-4" />
-              <CardTitle className="text-2xl">First 3 Months Only $10/Month<br />+ $10 OFF for Life</CardTitle>
+              <CardTitle className="text-2xl">First 3 Months Only $10/Month<br />for New Members</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <p className="font-semibold text-center mb-4">Founder's Club Benefits:</p>
 
                 {[
-                  'Pay just $10/month for your first 3 months',
-                  'Then save $10 every month for life on your selected plan',
-                  'No long-term contract - cancel anytime',
-                  'Works at all three Tampa Bay locations',
-                  'Members-Only express lane',
-                  'License plate recognition - no stickers',
-                  'Keep your locked-in rate as long as you stay active'
+                  'First 3 Months Only $10/Month for New Members',
+                  'Unlimited car washes — come as often as you want',
+                  'Dedicated member express lane for faster service',
+                  'Easy license plate recognition — no stickers or cards needed',
+                  'Free vacuums, towels, air guns & cleaning stations',
+                  'No contracts — cancel anytime',
+                  'Use your membership at all Top Edge locations',
+                  'Eco-friendly water recycling and safe cleaning products'
                 ].map((benefit, idx) => (
                   <div key={idx} className="flex items-start gap-2">
                     <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
@@ -95,7 +96,7 @@ const FoundersClubSection = () => {
                   Limited-time founding member offer!
                 </p>
                 <p className="text-center text-sm text-muted-foreground">
-                  Lock in your lifetime savings today
+                  Lock in your savings today
                 </p>
               </div>
 
