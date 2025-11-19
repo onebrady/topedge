@@ -48,7 +48,7 @@ const LocationHero = ({ location, heroImage }: LocationHeroProps) => {
           {location.id === "port-richey" ? (
             <Button size="lg" className="gradient-primary text-lg px-8" asChild>
               <a href="https://topedgecarwash.mywashaccount.com/">
-                Join the Founder's Club
+                Join Today - Special Pricing
               </a>
             </Button>
           ) : (

@@ -32,7 +32,7 @@ const LocationPricing = ({ isFoundersClub = false, locationName, joinUrl = "/por
           </h2>
           {isFoundersClub && (
             <p className="text-xl text-muted-foreground">
-              Founder's Club Pricing Available
+              Exclusive Member Pricing Available
             </p>
           )}
         </div>
@@ -64,7 +64,7 @@ const LocationPricing = ({ isFoundersClub = false, locationName, joinUrl = "/por
                           <div>
                             <p className="text-sm line-through text-muted-foreground">${premierePackage.monthly}/mo</p>
                             <p className="text-4xl font-bold text-primary">
-                              ${premierePackage.founderMonthly}<span className="text-sm font-normal">/mo</span>
+                              ${premierePackage.founderMonthly}<span className="text-sm font-normal">/mo + tax</span>
                             </p>
                           </div>
                         ) : (
@@ -95,7 +95,7 @@ const LocationPricing = ({ isFoundersClub = false, locationName, joinUrl = "/por
                   {premierePackage.monthly && (
                     <Button size="lg" className="w-full gradient-primary text-lg py-6" asChild>
                       <a href={isFoundersClub ? "https://topedgecarwash.mywashaccount.com/" : joinUrl}>
-                        {isFoundersClub ? 'Join as Founder Member' : 'Join Unlimited'}
+                        {isFoundersClub ? 'Lock In Your Price For Life' : 'Join Unlimited'}
                       </a>
                     </Button>
                   )}
@@ -156,7 +156,7 @@ const LocationPricing = ({ isFoundersClub = false, locationName, joinUrl = "/por
                   {(pkg.monthly || getPackagePrice(pkg, 'monthly')) ? (
                     <Button className="w-full gradient-primary" asChild>
                       <a href={isFoundersClub ? "https://topedgecarwash.mywashaccount.com/" : joinUrl}>
-                        {isFoundersClub ? 'Join as Founder Member' : 'Join Unlimited'}
+                        Join Unlimited
                       </a>
                     </Button>
                   ) : (
@@ -175,7 +175,7 @@ const LocationPricing = ({ isFoundersClub = false, locationName, joinUrl = "/por
         {isFoundersClub && (
           <div className="mt-8 text-center">
             <p className="text-sm text-muted-foreground">
-              * Founder pricing locked in for life - as long as membership remains active
+              * Member pricing locked in for life - as long as membership remains active
             </p>
           </div>
         )}

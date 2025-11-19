@@ -41,9 +41,9 @@ export const locationsData: LocationData[] = [
     zip: "34668",
     phone: "(813) 249-1800",
     email: "info@topedgecarwashes.com",
-    hours: "Mon-Sat: 8:00 AM - 8:00 PM, Sun: 9:00 AM - 6:00 PM",
+    hours: "Mon-Sat: 8:00 AM - 7:00 PM, Sun: 9:00 AM - 6:00 PM",
     hoursDetailed: {
-      weekday: "Monday - Saturday: 8:00 AM - 8:00 PM",
+      weekday: "Monday - Saturday: 8:00 AM - 7:00 PM",
       weekend: "Sunday: 9:00 AM - 6:00 PM",
     },
     coordinates: {
@@ -63,12 +63,12 @@ export const locationsData: LocationData[] = [
       "Dual Belt System",
     ],
     uniqueFeature: {
-      title: "Founder's Club Exclusive",
+      title: "Port Richey Exclusive",
       description: "First 3 Months Only $10/Month for New Members",
     },
-    metaTitle: "Port Richey Car Wash | Top Edge | Founder's Club Special",
+    metaTitle: "Port Richey Car Wash | Top Edge | Member Special Pricing",
     metaDescription:
-      "Port Richey car wash with Founder's Club: First 3 months only $10/mo + $10 off for life! Free vacuums, light show, unlimited washes. Join today at Top Edge!",
+      "Port Richey car wash with exclusive member pricing! First 3 months only $10/mo, plus special rates on our premium Graphene X4 wash. Free vacuums, light show, unlimited washes. Join today!",
   },
   {
     id: "wesley-chapel",
@@ -80,10 +80,10 @@ export const locationsData: LocationData[] = [
     zip: "33543",
     phone: "(813) 295-7000",
     email: "info@topedgecarwashes.com",
-    hours: "Mon-Sun: 8:00 AM - 8:00 PM",
+    hours: "Mon-Sun: 8:00 AM - 7:00 PM",
     hoursDetailed: {
-      weekday: "Monday - Saturday: 8:00 AM - 8:00 PM",
-      weekend: "Sunday: 8:00 AM - 8:00 PM",
+      weekday: "Monday - Saturday: 8:00 AM - 7:00 PM",
+      weekend: "Sunday: 8:00 AM - 7:00 PM",
     },
     coordinates: {
       lat: 28.2184,
@@ -115,10 +115,10 @@ export const locationsData: LocationData[] = [
     zip: "33634",
     phone: "(813) 295-7000",
     email: "info@topedgecarwashes.com",
-    hours: "Mon-Sun: 8:00 AM - 8:00 PM",
+    hours: "Mon-Sun: 8:00 AM - 7:00 PM",
     hoursDetailed: {
-      weekday: "Monday - Saturday: 8:00 AM - 8:00 PM",
-      weekend: "Sunday: 8:00 AM - 8:00 PM",
+      weekday: "Monday - Saturday: 8:00 AM - 7:00 PM",
+      weekend: "Sunday: 8:00 AM - 7:00 PM",
     },
     coordinates: {
       lat: 28.0203,
@@ -147,7 +147,7 @@ export const pricingPackages = [
     name: "Graphene X4",
     single: 30,
     monthly: 50,
-    founderMonthly: 40,
+    founderMonthly: 29,
     includes: [
       "Graphene X4 Protection",
       "Ceramic Seal",
@@ -162,7 +162,7 @@ export const pricingPackages = [
     name: "Diamond",
     single: 25,
     monthly: 45,
-    founderMonthly: 35,
+    founderMonthly: null,
     includes: [
       "Ceramic Seal",
       "Rain Repel",
@@ -177,7 +177,7 @@ export const pricingPackages = [
     name: "Platinum",
     single: 20,
     monthly: 40,
-    founderMonthly: 30,
+    founderMonthly: null,
     includes: [
       "Dry N' Shine",
       "Clear Coat",
@@ -192,7 +192,7 @@ export const pricingPackages = [
     name: "Gold",
     single: 15,
     monthly: 30,
-    founderMonthly: 20,
+    founderMonthly: null,
     includes: [
       "Rain Repel",
       "Carnauba Wax",

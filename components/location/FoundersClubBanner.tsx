@@ -22,12 +22,12 @@ const FoundersClubBanner = () => {
               First 3 Months Only $10/Month for New Members
             </p>
           </div>
-          <Button 
+          <Button
             onClick={scrollToFoundersClub}
-            size="lg" 
+            size="lg"
             className="bg-black text-yellow-400 hover:bg-gray-900 font-bold"
           >
-            Claim Your Founder's Club Benefits
+            Claim Your Exclusive Benefits
           </Button>
         </div>
       </div>

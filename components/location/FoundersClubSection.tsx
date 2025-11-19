@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Smartphone, Gift, Check, Sparkles } from "lucide-react";
+import { Smartphone, Gift, Check, Sparkles, Trophy } from "lucide-react";
 import { useEffect } from "react";
 
 const FoundersClubSection = () => {
@@ -27,14 +27,14 @@ const FoundersClubSection = () => {
             PORT RICHEY EXCLUSIVE
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Become a Port Richey Founder<br />Lock In Lifetime Savings!
+            Become a Port Richey Member
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Be part of our founding member program and enjoy exclusive pricing for life. Only at our Port Richey location.
+            Join our Port Richey location and enjoy exclusive member pricing. Limited time special offers available now!
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Offer 1: Text-to-Claim */}
           <Card className="border-2 border-yellow-400">
             <CardHeader className="text-center">
@@ -64,7 +64,7 @@ const FoundersClubSection = () => {
             </CardContent>
           </Card>
 
-          {/* Offer 2: Founder's Club Membership */}
+          {/* Offer 2: Membership Special */}
           <Card className="border-2 border-primary shadow-elegant">
             <CardHeader className="text-center">
               <Gift className="h-16 w-16 text-primary mx-auto mb-4" />
@@ -72,7 +72,7 @@ const FoundersClubSection = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
-                <p className="font-semibold text-center mb-4">Founder's Club Benefits:</p>
+                <p className="font-semibold text-center mb-4">Member Benefits:</p>
 
                 {[
                   'First 3 Months Only $10/Month for New Members',
@@ -93,7 +93,7 @@ const FoundersClubSection = () => {
 
               <div className="bg-muted p-4 rounded-lg">
                 <p className="text-center font-bold text-lg mb-2 text-primary">
-                  Limited-time founding member offer!
+                  Limited-time offer!
                 </p>
                 <p className="text-center text-sm text-muted-foreground">
                   Lock in your savings today
@@ -102,12 +102,66 @@ const FoundersClubSection = () => {
 
               <Button size="lg" className="w-full gradient-primary" asChild>
                 <a href="https://topedgecarwash.mywashaccount.com/">
-                  Founders Club Special
+                  Join Unlimited
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Offer 3: Graphene X4 Special */}
+          <Card className="border-2 border-yellow-400 shadow-elegant">
+            <CardHeader className="text-center">
+              <Trophy className="h-16 w-16 text-primary mx-auto mb-4" />
+              <CardTitle className="text-2xl">Lock In Your Price for Life on Our Top Membership</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="bg-primary/10 p-4 rounded-lg mb-4">
+                <p className="text-center font-bold text-xl text-primary">
+                  Graphene X4
+                </p>
+                <p className="text-center text-2xl font-bold mt-2">
+                  Only $29/month
+                </p>
+                <p className="text-center text-sm text-muted-foreground line-through">
+                  Regular $50/month
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <p className="font-semibold text-center mb-4">What's Included:</p>
+
+                {[
+                  'Graphene X4 Protection',
+                  'Ceramic Seal',
+                  'Hot Shine',
+                  'Rain Repel',
+                  'Carnauba Wax',
+                  'Dry N\' Shine'
+                ].map((benefit, idx) => (
+                  <div key={idx} className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-muted p-4 rounded-lg">
+                <p className="text-center font-bold text-lg mb-2 text-primary">
+                  Lock in $29/month for life!
+                </p>
+                <p className="text-center text-sm text-muted-foreground">
+                  Price guaranteed as long as membership remains active
+                </p>
+              </div>
+
+              <Button size="lg" className="w-full gradient-primary" asChild>
+                <a href="https://topedgecarwash.mywashaccount.com/">
+                  Get Graphene X4 Special
                 </a>
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                Founder pricing locked in for life - as long as membership remains active. Silver package not eligible.
+                Port Richey exclusive. Lock in this rate for life.
               </p>
             </CardContent>
           </Card>
